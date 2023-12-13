@@ -1,0 +1,21 @@
+{
+  "include": [
+    "./env.d.ts",
+    "**/*",
+    "index.d.ts",
+    "**/*.vue"
+  ],
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "ES2021",
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmit": true
+  },
+}

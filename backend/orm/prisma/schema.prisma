@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DB_PATH")
+}
+
+model User {
+  id          String       @id @default(uuid())
+  email       String       @unique
+  username    String       @unique
+  password    String
+  admin       Boolean
+  collections Collection[]
+}
+
+model Task {
+  id           String     @id @default(uuid())
+  name         String
+  done         Boolean    @default(false)
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collectionId String
+}
+
+model Collection {
+  id      String  @id @default(uuid())
+  name    String
+  tasks   Task[]
+  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId String
+}
